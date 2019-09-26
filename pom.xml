@@ -29,6 +29,18 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+
+
+        <!--   自定义ConfigurationProperties时,在application.xml中会有提示     -->
+        <!--   注: 会在META-INF下生成一个json文件    -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <!--  当被其他项目依赖的时候,该jar不会被传递到项目中  -->
+            <optional>true</optional>
+        </dependency>
+
+
         <!--   AMQP  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

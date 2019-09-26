@@ -1,6 +1,6 @@
-package com.xinchen.middleware.message.config;
+package com.xinchen.middleware.message.rabbit.configure.config;
 
-import com.xinchen.middleware.message.Receiver;
+import com.xinchen.middleware.message.rabbit.configure.receiver.Receiver;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.CustomExchange;
@@ -13,6 +13,7 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -22,12 +23,15 @@ import org.springframework.context.annotation.Profile;
  *
  * Rabbit Config
  *
+
+ *
  * @author xinchen
  * @version 1.0
  * @date 25/09/2019 11:38
  */
 @Configuration
 @Profile("rabbit")
+@ConditionalOnProperty(prefix = "messages",name = "rabbit.way-configure",havingValue = "true")
 public class RabbitConfig {
 
     public static final String TOPIC_EXCHANGE_NAME = "xc-exchange";
@@ -59,6 +63,7 @@ public class RabbitConfig {
     @Bean
     TopicExchange topicExchange(){
         // 配置exchange, 采用topic主题发布
+        // 默认durable=true , autoDelete=false
         return new TopicExchange(TOPIC_EXCHANGE_NAME);
     }
 
@@ -93,7 +98,7 @@ public class RabbitConfig {
         // 设置接受到消息后的后续处理
         container.setMessageListener(messageListenerAdapter);
 
-        return null;
+        return container;
     }
 
     @Bean
