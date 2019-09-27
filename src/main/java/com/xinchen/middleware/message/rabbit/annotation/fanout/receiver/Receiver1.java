@@ -1,7 +1,6 @@
 package com.xinchen.middleware.message.rabbit.annotation.fanout.receiver;
 
 import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.DeliverCallback;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.core.Message;
@@ -26,8 +25,9 @@ import java.io.IOException;
  */
 @RabbitListener(
         group = "xc-fanout",
-        bindings = @QueueBinding(value = @Queue(value ="fanout-queue",durable = "false"),
-                exchange = @Exchange(value = "xc-fanout",type = ExchangeTypes.FANOUT))
+        // declare=true 如果存在了该queue,则以重新以该定义再生成一遍
+        bindings = @QueueBinding(value = @Queue(value ="fanout-queue",declare = "false"),
+                exchange = @Exchange(value = "xc-fanout",durable = "false",autoDelete = "true",type = ExchangeTypes.FANOUT))
 
 )
 @Slf4j

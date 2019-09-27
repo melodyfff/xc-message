@@ -104,6 +104,7 @@ public class RabbitConfig {
     @Bean
     MessageListenerAdapter messageListenerAdapter(Receiver receiver){
         // 为传入的对象构建委托delegate, 当接收到消息通过委托调用处理消息的方法
+        // 默认代理的方法名为: handleMessage()
         return new MessageListenerAdapter(receiver, "receiveMessage");
     }
 
