@@ -21,6 +21,10 @@
 
     <modules>
         <module>springboot-rabbit</module>
+        <module>springboot-kafka</module>
+        <module>springboot-kafka-samples/sample-01</module>
+        <module>springboot-kafka-samples/sample-02</module>
+        <module>springboot-kafka-samples/sample-03</module>
     </modules>
 
     <dependencies>
