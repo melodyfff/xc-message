@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.xinchen.middleware</groupId>
-    <artifactId>message</artifactId>
+    <artifactId>xc-message</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>message</name>
+    <name>xc-message</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
 
@@ -22,9 +22,8 @@
     <modules>
         <module>springboot-rabbit</module>
         <module>springboot-kafka</module>
-        <module>springboot-kafka-samples/sample-01</module>
-        <module>springboot-kafka-samples/sample-02</module>
-        <module>springboot-kafka-samples/sample-03</module>
+        <module>springboot-kafka-samples</module>
+        <module>kafka-clients</module>
     </modules>
 
     <dependencies>
@@ -34,14 +33,4 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
